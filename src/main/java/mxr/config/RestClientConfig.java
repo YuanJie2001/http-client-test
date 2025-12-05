@@ -4,6 +4,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,22 +15,25 @@ public class RestClientConfig {
     @Bean
     public RestClient voiceprintClient() {
         return RestClient.builder()
+                .requestFactory(new HttpComponentsClientHttpRequestFactory())
                 .baseUrl("http://127.0.0.1:8000/voiceprint/api/v1/model")
                 .defaultHeader("Authorization", "Bearer voiceprint-open-api-token")
                 .build();
     }
 
+//    @Bean
+//    @Primary
+//    public RestTemplate restTemplate() {
+//        return new RestTemplate();
+//    }
+
     @Bean
     @Primary
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder
+                .requestFactory(SimpleClientHttpRequestFactory.class)
+                .rootUri("http://127.0.0.1:8000/voiceprint/api/v1/model")
+                .defaultHeader("Authorization", "Bearer voiceprint-open-api-token")
+                .build();
     }
-
-//    @Bean
-//    public RestTemplate restTemplateBuilder(RestTemplateBuilder builder) {
-//        return builder
-//                .rootUri("http://127.0.0.1:8000/voiceprint/api/v1/model")
-//                .defaultHeader("Authorization", "Bearer voiceprint-open-api-token")
-//                .build();
-//    }
 }

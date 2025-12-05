@@ -23,9 +23,9 @@ public class VoicePrintModelClient {
 
     private final RestClient voiceprintClient;
 
-    private final RestTemplate restTemplate;
+//    private final RestTemplate restTemplate;
 
-    private final RestTemplate restTemplateBuilder;
+    private final RestTemplate restTemplate;
 
     @GetMapping("/register")
     public String register(String userid) {
@@ -48,23 +48,23 @@ public class VoicePrintModelClient {
      * @param userid
      * @return
      */
-    @GetMapping("/register2")
-    public String register2(String userid){
-        MultiValueMap<String, Object> multiValueMap = new LinkedMultiValueMap<>();
-        multiValueMap.add("user_id", userid);
-        multiValueMap.add("audio_data", new FileSystemResource("profile/c_3.wav"));
-
-//        MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
-//        multipartBodyBuilder.part("user_id", userid);
-//        multipartBodyBuilder.part("audio_data", new FileSystemResource("profile/c_3.wav"));
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
-        httpHeaders.add("Authorization", "Bearer voiceprint-open-api-token");
-
-        HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(multiValueMap, httpHeaders);
-        return restTemplate.postForObject("http://127.0.0.1:8000/voiceprint/api/v1/model/register", httpEntity, String.class);
-    }
+//    @GetMapping("/register2")
+//    public String register2(String userid){
+//        MultiValueMap<String, Object> multiValueMap = new LinkedMultiValueMap<>();
+//        multiValueMap.add("user_id", userid);
+//        multiValueMap.add("audio_data", new FileSystemResource("profile/c_3.wav"));
+//
+////        MultipartBodyBuilder multipartBodyBuilder = new MultipartBodyBuilder();
+////        multipartBodyBuilder.part("user_id", userid);
+////        multipartBodyBuilder.part("audio_data", new FileSystemResource("profile/c_3.wav"));
+//
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+//        httpHeaders.add("Authorization", "Bearer voiceprint-open-api-token");
+//
+//        HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(multiValueMap, httpHeaders);
+//        return restTemplate.postForObject("http://127.0.0.1:8000/voiceprint/api/v1/model/register", httpEntity, String.class);
+//    }
 
 
     @GetMapping("/register3")
@@ -81,6 +81,6 @@ public class VoicePrintModelClient {
         httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(multiValueMap, httpHeaders);
-        return restTemplateBuilder.postForObject("/register", httpEntity, String.class);
+        return restTemplate.postForObject("/register", httpEntity, String.class);
     }
 }

@@ -9,3 +9,10 @@ Only clients constructed using `new RestTemplate()` function properly.
 
 
 参见：https://github.com/spring-projects/spring-boot/issues/48393
+
+# 终结
+测试结果：设置客户端请求工程
+优先级：HttpComponentsClientHttpRequestFactory > SimpleClientHttpRequestFactory
+问题出现在新版JdkClientHttpRequestFactory中对multipart请求处理时，没有对Content-Type进行正确设置。
+
+https://docs.springjava.cn/spring-framework/reference/integration/rest-clients.html#rest-request-factories
