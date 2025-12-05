@@ -24,11 +24,11 @@ public class RestClientConfig {
         return new RestTemplate();
     }
 
-    @Bean
-    public RestTemplate restTemplateBuilder(RestTemplateBuilder builder) {
-        return builder
-                .rootUri("http://localhost:8000/voiceprint/api/v1/model")
-                .defaultHeader("Authorization", "Bearer voiceprint-open-api-token")
-                .build();
-    }
+//    @Bean
+//    public RestTemplate restTemplateBuilder(RestTemplateBuilder builder) {
+//        return builder
+//                .rootUri("http://localhost:8000/voiceprint/api/v1/model")
+//                .defaultHeader("Authorization", "Bearer voiceprint-open-api-token")
+//                .build();
+//    }
 }
