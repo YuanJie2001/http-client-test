@@ -63,7 +63,7 @@ public class VoicePrintModelClient {
         httpHeaders.add("Authorization", "Bearer voiceprint-open-api-token");
 
         HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(multiValueMap, httpHeaders);
-        return restTemplate.postForObject("http://localhost:8000/voiceprint/api/v1/model/register", httpEntity, String.class);
+        return restTemplate.postForObject("http://127.0.0.1:8000/voiceprint/api/v1/model/register", httpEntity, String.class);
     }
 
 
