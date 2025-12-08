@@ -18,9 +18,13 @@ Only clients constructed using `new RestTemplate()` function properly.
 ![wireshark](static/1.jpg)
 在 multipart/form-data 上传时，客户端可能已经开始写 body，但 ALPN 协商还没完成
 -> 客户端（JDK HttpClient）发出 HTTP/2（或带 h2 ALPN）
+
 -> 服务器（FastAPI/Uvicorn）只支持 HTTP/1.1
+
 -> 发生 ALPN 协商失败 → 协商降级 → body 已经开始发送 → Stream reset
--> 服务端直接 RST（你图中红框那段）
+
+-> 服务端直接 RST（图中红框那段）
+
 -> 然后 Spring 报：
 EOF reached while reading
 header parser received no bytes
