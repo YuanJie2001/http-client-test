@@ -19,7 +19,7 @@ Only clients constructed using `new RestTemplate()` function properly.
 在 multipart/form-data 上传时，客户端可能已经开始写 body，但 ALPN 协商还没完成
 -> 客户端（JDK HttpClient）发出 HTTP/2（或带 h2 ALPN）
 
--> 服务器（FastAPI/Uvicorn）只支持 HTTP/1.1
+-> 服务器（FastAPI/Uvicorn）设置了 HTTP/1.1
 
 -> 发生 ALPN 协商失败 → 协商降级 → body 已经开始发送 → Stream reset
 
