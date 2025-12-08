@@ -18,7 +18,8 @@ public class RestClientConfig {
     @Bean
     public RestClient voiceprintClient() {
         return RestClient.builder()
-                .requestFactory(new JdkClientHttpRequestFactory(HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build()))
+                .requestFactory(new HttpComponentsClientHttpRequestFactory())
+//                .requestFactory(new JdkClientHttpRequestFactory(HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build()))
                 .baseUrl("http://127.0.0.1:8000/voiceprint/api/v1/model")
                 .defaultHeader("Authorization", "Bearer voiceprint-open-api-token")
                 .build();
